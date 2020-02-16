@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Demo Notification";
+}
+
+<div class="col-md-12">
+    <h2>Say Hello</h2>
+    <div id="messages"></div>
+    <hr />
+
+    <div class="form-group">
+        <label for="toUser">Username:</label>
+        <input type="text" class="form-control" id="toUser" value="" placeholder="hungvo" />
+    </div>
+    <div class="form-group">
+        <label for="myMessage">Message:</label>
+        <input type="text" class="form-control" id="myMessage" value="" placeholder="message" />
+    </div>
+
+    <button type="submit" class="btn btn-default" id="submit">Submit</button>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        function updateTotalNotification(nbrOfNotification) {
+            console.log(`Total Notifications: ${nbrOfNotification}`);
+            $("#messages").html("<p> Total Notifications:" + nbrOfNotification + "</p>");
+        }
+
+        var hub = $.connection.notificationHub;
+
+        //Client Call
+        hub.client.broadcastNotification = function (totalNotifications) {
+            updateTotalNotification(totalNotifications);
+        };
+
+        //$.connection.hub.start().done(function () { });
+
+        $.connection.hub.start()
+            .done(function () {
+                console.log("Hub Connected!");
+
+                //Server Call
+                hub.server.getNotification();
+
+            })
+            .fail(function () {
+                console.log("Could not Connect!");
+            });
+    });
+</script>
+
+<script type="text/javascript">
+    $("#submit").click(function (e) {
+        e.preventDefault();
+
+        var message = $("#myMessage").val();
+        var sendToUser = $("#toUser").val();
+
+        new NotifSystem.Default.NotificationHelper().Send(sendToUser, message, (response) => {
+            $("#myMessage").val("");
+        });
+
+    });
+</script> 

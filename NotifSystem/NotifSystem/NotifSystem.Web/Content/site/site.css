@@ -7404,3 +7404,9 @@ section.content > .s-DataGrid {
   font-style: italic;
   color: #966;
 }
+.s-Default-NotificationDialog > .size {
+  width: 650px;
+}
+.s-Default-NotificationDialog .caption {
+  width: 150px;
+}
