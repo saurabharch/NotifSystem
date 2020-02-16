@@ -11,9 +11,15 @@
 {
     @Html.Stylesheet("~/Content/site/site.rtl.css")
 }
-<script type="application/json" id="ScriptCulture">@Html.Raw(Serenity.JSON.Stringify(new ScriptCulture()))</script>
+<script type="application/json" id="ScriptCulture">
+    @Html.Raw(Serenity.JSON.Stringify(new ScriptCulture()))
+</script>
 <script type="text/javascript">window.paceOptions = { startOnPageLoad: false, ajax: { trackMethods: ['GET', 'POST'], trackWebSockets: false, ignoreURLs: [] } };</script>
 @Html.ScriptBundle("Base")
+
+<script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+<script src="~/signalr/hubs"></script>
+
 @Html.ScriptBundle("Site")
 @Html.LocalTextScript("Site")
 
@@ -21,3 +27,4 @@
     @Html.Raw(DynamicScriptManager.GetScriptText("Lookup.Administration.Language"))
     @Html.Raw(DynamicScriptManager.GetScriptText("RegisteredScripts"))
 </script>
+
