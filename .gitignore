@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/NotifSystem/packages
+/NotifSystem/.vs/NotifSystem
+/NotifSystem/NotifSystem/NotifSystem.Web/bin
+/NotifSystem/NotifSystem/NotifSystem.Web/obj/Debug
